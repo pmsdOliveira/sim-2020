@@ -1,5 +1,6 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.5;
 }
 
 .logo {
@@ -7,18 +8,27 @@
 }
 
 .header-title,
-.main-title,
+.content-title,
 .footer-title {
   text-align: center;
 }
 
 .menu {
   vertical-align: top;
+  width: 10%;
 }
 
-.menu-active {
-  background-color: rgb(41, 187, 12);
-  color: rgb(0, 39, 75);
+.menu-title {
+  background-color: #8ac02f;
+  color: #083c5c;
+  display: block;
   text-decoration: none;
-  width: 100%;
+}
+
+.login-form {
+  margin: 15vh 5vw;
+}
+
+.login-submit {
+  margin: 1%;
 }

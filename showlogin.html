@@ -20,18 +20,29 @@
       </thead>
       <tbody>
         <tr>
-          <td class="menu" width="10%">
-            <a href="#">Opções</a>
-            <a href="#">Apresentação</a>
-            <a class="menu-active" href="#"><strong>Login</strong></a>
+          <td class="menu">
+            <a class="menu-title"><strong>Opções</strong></a>
+            <a href="index.html">Apresentação</a>
+            <a href="">Login</a>
           </td>
           <td align="center">
-            <form method="POST">
-              Username:<input type="text" name="user" /> Password:<input
-                type="password"
-                name="password"
+            <form class="login-form" method="POST">
+              <table>
+                <tr>
+                  <td><label>Username:</label></td>
+                  <td><input type="text" name="user" /></td>
+                </tr>
+                <tr>
+                  <td><label>Password:</label></td>
+                  <td><input type="password" name="password" /></td>
+                </tr>
+              </table>
+              <input
+                class="login-submit"
+                type="submit"
+                name="submit"
+                value="Submit"
               />
-              <input type="submit" name="submit" value="Submit" />
             </form>
           </td>
         </tr>
