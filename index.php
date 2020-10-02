@@ -22,28 +22,16 @@
         <tr>
           <td class="menu">
             <a class="menu-title"><strong>Opções</strong></a>
-            <a href="index.html">Apresentação</a>
-            <a href="">Login</a>
+            <a href="?operacao=homepage">Apresentação</a>
+            <a href="?operacao=showLogin">Login</a>
           </td>
           <td align="center">
-            <form class="login-form" method="POST">
-              <table>
-                <tr>
-                  <td><label>Username:</label></td>
-                  <td><input type="text" name="user" /></td>
-                </tr>
-                <tr>
-                  <td><label>Password:</label></td>
-                  <td><input type="password" name="password" /></td>
-                </tr>
-              </table>
-              <input
-                class="login-submit"
-                type="submit"
-                name="submit"
-                value="Submit"
-              />
-            </form>
+            <?php
+              switch ($_GET['operacao']) {
+                case 'homepage': include("homepage.php"); break;
+                case 'showLogin': include("showLogin.php"); break;
+              }
+            ?>
           </td>
         </tr>
       </tbody>
