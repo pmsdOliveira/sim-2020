@@ -19,20 +19,21 @@
           for ($id = ($pageNum - 1) * $pageSize + 1; $id <= $pageNum * $pageSize; $id++) {
             echo '<tr><td style="text-align: center;">' . $id. '</td><td></td><td></td></tr>';
           }
-
-          for ($i = 1; $i <= 3; $i++) {
-            $lowerLim = ($i - 1) * $pageSize + 1;
-            $upperLim = $i * $pageSize;
-
-            if ($i == $pageNum) {
-              echo '<p>' . $lowerLim . '-' . $upperLim . '</p>';
-            } else {
-              echo '<a href="?op=list&pageNum=' . $i . '&pageSize=' . $pageSize . '">'
-                . $lowerLim . '-' . $upperLim . '</a>';
-            }
-          }
         ?>
       </tbody>
-    </table>   
+    </table>
+    <?php
+        for ($i = 1; $i <= 3; $i++) {
+          $lowerLim = ($i - 1) * $pageSize + 1;
+          $upperLim = $i * $pageSize;
+
+          if ($i == $pageNum) {
+            echo '<p>' . $lowerLim . '-' . $upperLim . '</p>';
+          } else {
+            echo '<a href="?op=list&pageNum=' . $i . '&pageSize=' . $pageSize . '">'
+              . $lowerLim . '-' . $upperLim . '</a>';
+          }
+        }
+    ?> 
   </body>
 </html>
