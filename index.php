@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-  session_start();
+    session_start(); 
 ?>
 
 <html>
@@ -11,7 +11,6 @@
   </head>
 
   <body>
-    
     <table align="center" border="1" width="95%">
       <thead>
         <tr>

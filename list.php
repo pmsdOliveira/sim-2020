@@ -3,9 +3,9 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <table align="center" border="1" width="50%">
+    <table align="center" border="1" width="50%" style="margin: 5vh 5vw;">
       <thead>
-        <tr>
+        <tr style="background-color: #8ac02f; text-align: center; font-weight: bold;">
           <td>Id</td>
           <td>Nome</td>
           <td>Data</td>
@@ -13,13 +13,26 @@
       </thead>
       <tbody>
         <?php
-          $id = 0;
-          while ($id < 10) {
-            echo '<tr><td>' . $id. '</td></tr>';
-            $id++;
+          $pageNum = $_GET['pageNum'];
+          $pageSize = $_GET['pageSize'];
+
+          for ($id = ($pageNum - 1) * $pageSize + 1; $id <= $pageNum * $pageSize; $id++) {
+            echo '<tr><td style="text-align: center;">' . $id. '</td><td></td><td></td></tr>';
+          }
+
+          for ($i = 1; $i <= 3; $i++) {
+            $lowerLim = ($i - 1) * $pageSize + 1;
+            $upperLim = $i * $pageSize;
+
+            if ($i == $pageNum) {
+              echo '<p>' . $lowerLim . '-' . $upperLim . '</p>';
+            } else {
+              echo '<a href="?op=list&pageNum=' . $i . '&pageSize=' . $pageSize . '">'
+                . $lowerLim . '-' . $upperLim . '</a>';
+            }
           }
         ?>
       </tbody>
-    </table>
+    </table>   
   </body>
 </html>

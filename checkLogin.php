@@ -1,7 +1,10 @@
 <html>
   <body>
     <?php 
-      session_start();
+      if(!isset($_SESSION)) 
+      { 
+        session_start(); 
+      } 
 
       if (($_POST['user'] == 'admin') AND ($_POST['password'] == '12345')) {
         $_SESSION['authuser'] = 1;
