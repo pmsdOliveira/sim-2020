@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <table align="center" border="1" width="50%" style="margin: 5vh 5vw;">
+    <table class="list-container" border="1">
       <thead>
         <tr class="list-titles">
           <td>Id</td>
@@ -17,7 +17,7 @@
           $pageSize = $_GET['pageSize'];
 
           for ($id = ($pageNum - 1) * $pageSize + 1; $id <= $pageNum * $pageSize; $id++) {
-            echo '<tr><td style="text-align: center;">' . $id. '</td><td></td><td></td></tr>';
+            echo '<tr><td class="list-content">' . $id. '</td><td></td><td></td></tr>';
           }
         ?>
       </tbody>

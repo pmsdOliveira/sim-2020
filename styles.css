@@ -47,8 +47,17 @@
   margin: 1%;
 }
 
+.list-container {
+  margin: 5vh 5vw;
+  width: 50%;
+}
+
 .list-titles {
   background-color: #8ac02f;
   text-align: center;
   font-weight: bold;
+}
+
+.list-content {
+  text-align: center;
 }
