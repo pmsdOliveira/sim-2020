@@ -5,7 +5,7 @@
   <body>
     <table align="center" border="1" width="50%" style="margin: 5vh 5vw;">
       <thead>
-        <tr style="background-color: #8ac02f; text-align: center; font-weight: bold;">
+        <tr class="list-titles">
           <td>Id</td>
           <td>Nome</td>
           <td>Data</td>
@@ -23,15 +23,15 @@
       </tbody>
     </table>
     <?php
-        for ($i = 1; $i <= 3; $i++) {
+        for ($i = 1; $i <= 4; $i++) {
           $lowerLim = ($i - 1) * $pageSize + 1;
           $upperLim = $i * $pageSize;
 
           if ($i == $pageNum) {
-            echo '<p>' . $lowerLim . '-' . $upperLim . '</p>';
+            echo '<a>' . $lowerLim . '-' . $upperLim . '</a>&nbsp;';
           } else {
-            echo '<a href="?op=list&pageNum=' . $i . '&pageSize=' . $pageSize . '">'
-              . $lowerLim . '-' . $upperLim . '</a>';
+            echo '<a href="?op=listUsers&pageNum=' . $i . '&pageSize=' . $pageSize . '">'
+              . $lowerLim . '-' . $upperLim . '</a>&nbsp;';
           }
         }
     ?> 
