@@ -15,21 +15,27 @@
         <?php
           $pageNum = $_GET['pageNum'];
           $pageSize = $_GET['pageSize'];
+          $maxIDLastPage = $pageSize * ($pageNum - 1);
 
           $link = mysqli_connect('localhost', 'root', '', 'SIM')
             or die('Error connecting to the server: ' . mysqli_error($connect));
-          $query = 'SELECT * FROM USERS';
+          $query = 'SELECT * FROM USERS WHERE ID > ' . $maxIDLastPage;
           $result = mysqli_query($link, $query) or die('The query failed: ' . mysqli_error($link));
 
           $number = mysqli_num_rows($result);
           $pages = $number / $pageSize + 1;
 
-          for ($id = ($pageNum - 1) * $pageSize + 1; $id <= $pageNum * $pageSize; $id++) {
-            $users = mysqli_fetch_array($result, MYSQLI_NUM);
+          if ($number < $pageSize)
+            $nRows = $number;
+          else
+            $nRows = $pageSize;
+
+          for ($id = 0; $id < $nRows; $id++) {
+            $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
             echo '<tr>
-                    <td class="list-content">' . $id. '</td>
-                    <td>' . $users[1] . '</td>
-                    <td>' . $users[4] . '</td>
+                    <td class="list-content">' . $user["ID"] . '</td>
+                    <td>' . $user["NAME"] . '</td>
+                    <td>' . $user["CREATION_DATE"] . '</td>
                   </tr>';
           }
         ?>
@@ -38,8 +44,11 @@
     <?php
         for ($i = 1; $i <= $pages; $i++) {
           $lowerLim = ($i - 1) * $pageSize + 1;
-          $upperLim = $i * $pageSize;
-
+          if ($number < $pageSize)
+            $upperLim = ($i - 1) * $pageSize + $number;
+          else
+            $upperLim = $i * $pageSize;
+          
           if ($i == $pageNum) {
             echo '<a>' . $lowerLim . '-' . $upperLim . '</a>&nbsp;';
           } else {
