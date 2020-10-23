@@ -58,6 +58,10 @@
   font-weight: bold;
 }
 
-.list-content {
+.list-id {
   text-align: center;
+}
+
+.list-content {
+  width: 45%;
 }

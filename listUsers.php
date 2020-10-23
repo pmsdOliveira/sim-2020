@@ -19,40 +19,46 @@
 
           $link = mysqli_connect('localhost', 'root', '', 'SIM')
             or die('Error connecting to the server: ' . mysqli_error($connect));
-          $query = 'SELECT * FROM USERS WHERE ID > ' . $maxIDLastPage;
+
+          $query = 'SELECT * FROM USERS';
           $result = mysqli_query($link, $query) or die('The query failed: ' . mysqli_error($link));
+          $totalUsers = mysqli_num_rows($result);
+          $pages = intval($totalUsers / $pageSize + 1);
+          
+          $query = 'SELECT * FROM USERS WHERE ID > ' . $maxIDLastPage . ' LIMIT ' . $pageSize;
+          $result = mysqli_query($link, $query) or die('The query failed: ' . mysqli_error($link));
+          $usersInPage = mysqli_num_rows($result);
 
-          $number = mysqli_num_rows($result);
-          $pages = $number / $pageSize + 1;
-
-          if ($number < $pageSize)
-            $nRows = $number;
+          if ($pageSize > $usersInPage)
+            $nRows = $usersInPage;
           else
             $nRows = $pageSize;
 
-          for ($id = 0; $id < $nRows; $id++) {
+          for ($i = 1; $i <= $nRows; $i++) {
             $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
             echo '<tr>
-                    <td class="list-content">' . $user["ID"] . '</td>
-                    <td>' . $user["NAME"] . '</td>
-                    <td>' . $user["CREATION_DATE"] . '</td>
+                    <td class="list-id">' . $user["ID"] . '</td>
+                    <td class="list-content">' . $user["NAME"] . '</td>
+                    <td class="list-content">' . $user["CREATION_DATE"] . '</td>
                   </tr>';
           }
         ?>
       </tbody>
     </table>
     <?php
-        for ($i = 1; $i <= $pages; $i++) {
-          $lowerLim = ($i - 1) * $pageSize + 1;
-          if ($number < $pageSize)
-            $upperLim = ($i - 1) * $pageSize + $number;
-          else
-            $upperLim = $i * $pageSize;
+        for ($page = 1; $page <= $pages; $page++) {
+          $lowerLim = ($page - 1) * $pageSize + 1;
+          $maxIDNextPage = $page * $pageSize;
           
-          if ($i == $pageNum) {
+          if ($maxIDNextPage > $totalUsers)
+            $upperLim = $totalUsers;
+          else
+            $upperLim = $maxIDNextPage;
+          
+          if ($page == $pageNum) {  // don't create link for current page
             echo '<a>' . $lowerLim . '-' . $upperLim . '</a>&nbsp;';
           } else {
-            echo '<a href="?op=listUsers&pageNum=' . $i . '&pageSize=' . $pageSize . '">'
+            echo '<a href="?op=listUsers&pageNum=' . $page . '&pageSize=' . $pageSize . '">'
               . $lowerLim . '-' . $upperLim . '</a>&nbsp;';
           }
         }
