@@ -10,7 +10,7 @@
         or die('Error connecting to the server: ' . mysqli_error($connect));
 
       $sql = 'SELECT * FROM USERS WHERE (username = "' . $_POST['user'] . '" AND
-        password = "' . $_POST['password'] . '")';
+        password = "' . md5($_POST['password']) . '")';
 
       $result = mysqli_query($connect, $sql) or die('The query failed: ' . mysqli_error($connect));
 

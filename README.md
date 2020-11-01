@@ -21,3 +21,7 @@ This class comes in sequence of the previous class and has as main objective the
 ## Practical Class 4 - Databases: An Introduction to MySQL
 
 This class main objective is to make an introduction to Databases (BD) in MySQL and their interconnection with PHP. You should get to know how to create databases, tables, enter data, search data and present data in HTML.
+
+## Practical Class 5 - Databases: Insertion and Indexing
+
+This class main objective is to create a form to insert data into the DB and to test the indexing mechanism.

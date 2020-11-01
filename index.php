@@ -39,6 +39,7 @@
                 echo '<tr><td><a href="?op=logout">Logout</a></tr></td>';
               } else {
                 echo '<tr><td><a href="?op=showLogin">Login</a></tr></td>';
+                echo '<tr><td><a href="?op=register">Registo</a></tr></td>';
               }
             ?>
             </table>
@@ -47,12 +48,15 @@
             <?php
               if (!isset($_GET['op'])) {
                 header("Location: ?op=homepage");
-              } else if ($_GET['op'] != 'homepage' AND $_GET['op'] != 'checkLogin') {      // CHECK LOGIN PRIORITY OVER REST OF PAGES
-                if (!isset($_SESSION['authuser']) OR $_SESSION['authuser'] != 1) {
-                  if ($_GET['op'] != 'showLogin') {
+              } else {
+                $op = $_GET['op'];
+
+                if ($op != 'homepage' AND $op != 'checkLogin' AND
+                  $op != 'register' AND $op != 'checkRegister') {// CHECK LOGIN PRIORITY OVER REST OF PAGES
+                  if (!$isLogged AND $op != 'showLogin') {
                     header("Location: ?op=showLogin");
                   }
-                }
+                } 
               }
               
               switch ($_GET['op']) {
@@ -61,6 +65,8 @@
                 case 'checkLogin': include("checkLogin.php"); break;
                 case 'logout': include("logout.php"); break;
                 case 'listUsers': include("listUsers.php"); break;
+                case 'register': include("register.php"); break;
+                case 'checkRegister': include("checkRegister.php"); break;
               }  
             ?>
           </td>
