@@ -9,7 +9,7 @@
       $maxIDLastPage = $pageSize * ($pageNum - 1);
 
       $link = mysqli_connect('localhost', 'root', '', 'SIM')
-        or die('Error connecting to the server: ' . mysqli_error($connect));
+        or die('Error connecting to the server.');
 
       $query = 'SELECT * FROM USERS';
       $result = mysqli_query($link, $query) or die('The query failed: ' . mysqli_error($link));
